@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arts Administration | Marcus Cheung</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reused Cool Modern Palette */
+        :root {
+            --bg-color: #f8fafc; 
+            --bg-light-blue: #f0f9ff; 
+            --text-main: #1e293b; 
+            --text-muted: #64748b; 
+            --accent-blue: #475569; 
+            --border-color: #e2e8f0; 
+            --divider-light: #f1f5f9;
+            --white: #ffffff;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-size: 0.95rem; 
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            color: var(--text-main);
+        }
+
+        a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--text-muted);
+        }
+
+        .container {
+            max-width: 1050px; /* Balanced width for clean horizontal layout */
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation with Dropdown */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            align-items: center;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.05);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            border: 1px solid var(--border-color);
+            border-top: 2px solid var(--accent-blue);
+        }
+
+        .dropdown-content a {
+            color: var(--text-main);
+            padding: 15px 20px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.8rem;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--bg-light-blue);
+            color: var(--accent-blue);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Portfolio Header */
+        .portfolio-header {
+            text-align: center;
+            padding: 5rem 0 3rem 0; 
+        }
+
+        .portfolio-header h1 {
+            font-size: 3.5rem; /* Restored to original size */
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-header p {
+            color: var(--text-muted); 
+            font-size: 1.1rem;
+        }
+
+        /* Clean Horizontal Portfolio Styling */
+        .portfolio-section {
+            padding: 1rem 0 5rem 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 3rem; /* Clean breathing room between cards */
+        }
+
+        .portfolio-card {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px; 
+            overflow: hidden;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05); /* Softer, more elegant shadow */
+            display: flex;
+            flex-direction: column; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px -10px rgba(0,0,0,0.08);
+        }
+
+        /* Mobile Image Fallback */
+        .card-image {
+            height: 250px; 
+            background-size: cover;
+            background-position: center;
+            background-color: var(--border-color);
+        }
+
+        /* Desktop Layout - Magazine Style Split */
+        @media (min-width: 900px) {
+            .portfolio-card {
+                flex-direction: row; 
+                align-items: stretch; /* Stretches image to match content height cleanly */
+            }
+            .card-image {
+                width: 35%; /* Fixed width column */
+                height: auto; 
+                min-height: 100%;
+                border-right: 1px solid var(--border-color);
+            }
+            .card-content {
+                width: 65%; 
+                padding: 3rem; /* Lots of clean breathing room */
+            }
+        }
+
+        .card-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-content h4 {
+            font-size: 1.6rem; 
+            margin: 0 0 0.4rem 0;
+            color: var(--text-main);
+        }
+
+        .card-content span {
+            display: block;
+            font-size: 0.85rem; 
+            color: var(--accent-blue);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        .card-content p {
+            margin: 0;
+            color: #334155;
+            line-height: 1.7;
+        }
+
+        /* Clean Carousel Styling */
+        .social-media-work {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--divider-light);
+        }
+
+        .social-media-work h5 {
+            font-size: 1rem; 
+            margin: 0 0 1rem 0;
+            color: var(--text-main);
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .video-carousel-container, .image-carousel-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .carousel-slides {
+            width: 100%;
+            max-width: 280px; /* Perfect medium size: clean but visible */
+            overflow: hidden;
+            position: relative;
+            border-radius: 6px;
+            margin: 0 auto;
+        }
+
+        .video-slide, .image-slide {
+            display: none;
+            width: 100%;
+            animation: fade 0.5s;
+        }
+
+        .video-slide.active, .image-slide.active {
+            display: block;
+        }
+
+        .media-item video, .media-item img {
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            display: block;
+        }
+
+        .media-item video {
+            background-color: #000;
+        }
+
+        .media-item p {
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 0.6rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        .carousel-btn {
+            background-color: var(--white);
+            color: var(--accent-blue);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 32px; 
+            height: 32px; 
+            cursor: pointer;
+            position: absolute;
+            z-index: 2;
+            top: 40%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+        }
+
+        .carousel-btn:hover {
+            background-color: var(--bg-light-blue);
+            color: var(--text-main);
+            border-color: var(--accent-blue);
+        }
+
+        .prev-btn { left: -15px; }
+        .next-btn { right: -15px; }
+
+        @keyframes fade {
+            from {opacity: .5} 
+            to {opacity: 1}
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav>
+            <div class="logo">MC</div>
+            <div class="nav-links">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#about">About</a>
+                
+                <div class="dropdown">
+                    <a href="#" style="cursor: default; color: var(--accent-blue);">Experience ▼</a>
+                    <div class="dropdown-content">
+                        <a href="music-experience.html">Musician Experience</a>
+                        <a href="arts-admin-experience.html" style="font-weight: bold;">Arts Administration</a>
+                    </div>
+                </div>
+
+                <a href="index.html#booking">Booking</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </div>
+
+    <header class="portfolio-header">
+        <div class="container">
+            <h1>Arts Administration</h1>
+            <p>Cello Performance and Arts Management & Entrepreneurship major at Miami University.</p>
+        </div>
+    </header>
+
+    <section class="portfolio-section">
+        <div class="container">
+            <div class="grid">
+                
+                <div class="portfolio-card">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&q=80');"></div>
+                    <div class="card-content">
+                        <h4>Festival Prague Summer Nights</h4>
+                        <span>Orchestra Operations Administrator</span>
+                        <p>As an Orchestra Administrator, his role consisted of several responsibilities ranging from stage management, scheduling, and coordinating concerts in the Czech Republic. Marcus stage managed in three different cities in the Czech Republic: Tabor, Plzen, and Prague. These concerts had distinguished guests such as world renown conductor Marin Alsop, the Dallas Symphony Chorus, and principal clarinetist of the Philadelphia Orchestra Ricardo Morales. The festival's concerts had an attendance of over 800 audience members. In addition, Marcus was responsible for stage managing the orchestra for 4 opera productions of Magic Flute and Figaro in Vienna, Austria.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80');"></div>
+                    <div class="card-content">
+                        <h4>Summermusik (Cincinnati Chamber Orchestra)</h4>
+                        <span>Arts Administration Intern</span>
+                        <p>As an Arts Administration Intern, his role is to manage all social media accounts and develop and execute marketing strategies. In addition to marketing, Marcus also has experience in Festival production and planning for We Are One: Roots and development work in grant writing and donor relations.</p>
+                        
+                        <div class="social-media-work">
+                            <h5>Featured Social Media Content</h5>
+                            <div class="video-carousel-container">
+                                <button class="carousel-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+                                
+                                <div class="carousel-slides">
+                                    <div class="video-slide active">
+                                        <div class="media-item">
+                                            <video controls>
+                                                <source src="Artsville Venue Highlight Reel(2).mp4" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <p>Artsville Venue Highlight</p>
+                                        </div>
+                                    </div>
+                                    <div class="video-slide">
+                                        <div class="media-item">
+                                            <video controls>
+                                                <source src="Pass The Phone Reel (1).mp4" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <p>Pass The Phone Challenge</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="carousel-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="card-image" style="background-image: url('Marshall%20Elementary%20Instrument%20Try%20It%20Day%20Photo%201.jpg');"></div>
+                    <div class="card-content">
+                        <h4>Instrument Try It Day Event</h4>
+                        <span>Project Manager</span>
+                        <p>Marcus project managed an Instrument Try It Day Fair for over 150 students at Marshall Elementary. He collaborated with Marshall Elementary, Miami Music Department, Willis Music, and Ohio Collegiate Music Educators Association (OCMEA) to create this event. He organized the schedule for the event and the logistics coordinating with all parties involved. More specifically his role was focused on coordinating with Willis Music to get the instruments for this event. Additionally, he was heavily involved in coordinating with the president of OCMEA to get music education volunteers to help run the instrument stations for the event.</p>
+                        
+                        <div class="social-media-work">
+                            <h5>Event Gallery</h5>
+                            <div class="image-carousel-container">
+                                <button class="carousel-btn prev-btn" onclick="changeImageSlide(-1)">&#10094;</button>
+                                
+                                <div class="carousel-slides">
+                                    <div class="image-slide active">
+                                        <div class="media-item">
+                                            <img src="Marshall Elementary Instrument Try It Day Photo 1.jpg" alt="String Instruments Demonstration">
+                                            <p>String Instruments Demonstration</p>
+                                        </div>
+                                    </div>
+                                    <div class="image-slide">
+                                        <div class="media-item">
+                                            <img src="Marshall Elementary Instrument Try It Day Photo 2.jpg" alt="Instrument Stations in Action">
+                                            <p>Instrument Stations in Action</p>
+                                        </div>
+                                    </div>
+                                    <div class="image-slide">
+                                        <div class="media-item">
+                                            <img src="Marshall Elementary Instrument Try It Day Photo 3 (1).jpg" alt="Students Exploring New Instruments">
+                                            <p>Students Exploring New Instruments</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="carousel-btn next-btn" onclick="changeImageSlide(1)">&#10095;</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Marcus Cheung. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Video Carousel Logic
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.video-slide');
+
+        function changeSlide(direction) {
+            const activeVideo = slides[currentSlideIndex].querySelector('video');
+            if(activeVideo) activeVideo.pause();
+            slides[currentSlideIndex].classList.remove('active');
+            currentSlideIndex = (currentSlideIndex + direction + slides.length) % slides.length;
+            slides[currentSlideIndex].classList.add('active');
+        }
+
+        // Image Carousel Logic
+        let currentImgSlideIndex = 0;
+        const imgSlides = document.querySelectorAll('.image-slide');
+
+        function changeImageSlide(direction) {
+            imgSlides[currentImgSlideIndex].classList.remove('active');
+            currentImgSlideIndex = (currentImgSlideIndex + direction + imgSlides.length) % imgSlides.length;
+            imgSlides[currentImgSlideIndex].classList.add('active');
+        }
+    </script>
+
+</body>
+</html>

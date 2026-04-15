@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musician Experience | Marcus Cheung</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reused Cool Modern Palette */
+        :root {
+            --bg-color: #f8fafc; 
+            --bg-light-blue: #f0f9ff; 
+            --text-main: #1e293b; 
+            --text-muted: #64748b; 
+            --accent-blue: #475569; 
+            --border-color: #e2e8f0; 
+            --white: #ffffff;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            color: var(--text-main);
+        }
+
+        a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--text-muted);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation with Dropdown */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            align-items: center;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.05);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            border: 1px solid var(--border-color);
+            border-top: 2px solid var(--accent-blue);
+        }
+
+        .dropdown-content a {
+            color: var(--text-main);
+            padding: 15px 20px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.8rem;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--bg-light-blue);
+            color: var(--accent-blue);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Portfolio Header */
+        .portfolio-header {
+            text-align: center;
+            padding: 5rem 0 3rem 0;
+        }
+
+        .portfolio-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Biography Section */
+        .biography-section {
+            max-width: 800px;
+            margin: 0 auto 4rem auto;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            text-align: justify;
+        }
+
+        .biography-section p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Portfolio Grid Styling */
+        .portfolio-section {
+            padding: 0 0 4rem 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .portfolio-card {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--border-color);
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-content h4 {
+            font-size: 1.4rem;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .card-content span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Gallery Section Styling */
+        .gallery-section {
+            padding: 4rem 0 6rem 0;
+            background-color: var(--bg-light-blue);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .gallery-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            aspect-ratio: 1 / 1;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            display: block;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav>
+            <div class="logo">MC</div>
+            <div class="nav-links">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#about">About</a>
+                
+                <div class="dropdown">
+                    <a href="#" style="cursor: default; color: var(--accent-blue);">Experience ▼</a>
+                    <div class="dropdown-content">
+                        <a href="music-experience.html" style="font-weight: bold;">Musician Experience</a>
+                        <a href="arts-admin-experience.html">Arts Administration</a>
+                    </div>
+                </div>
+
+                <a href="index.html#booking">Booking</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </div>
+
+    <header class="portfolio-header">
+        <div class="container">
+            <h1>Musician Experience</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem;">Highlights from orchestral performance and freelance engagements.</p>
+        </div>
+    </header>
+
+    <section class="portfolio-section">
+        <div class="container">
+            
+            <div class="biography-section">
+                <p>Marcus is an accomplished cellist having performed in a variety of styles, ensembles, and locations. He is completing his Bachelor of Music from Miami University where he has studied under Dr. Sarah Kim and Dr. Franklin Sandoval. He has also played in several masterclasses such as for Sarah Berry, Western Kentucky University Professor, Joanna Blendulf, Jacob School of Music Professor and Baroque Cello Specialist, Rictor Noren, Boston Conservatory Professor, Karlos Rodriguez, Cellist for the Catalyst Quartet. He currently serves as the associate principal for the Miami University Symphony Orchestra and is president and co-founder of Miami University Cello Society.</p>
+                <p>Marcus also has distinguished experience internationally performing with world renown conductor Marin Alsop in Pilzen, Czechia and with Music Generation Laois featuring guest artist Steve Cooney in Laois, Ireland. Additionally, he has also had experience studying with Tamas Varga, Principal Cellist of the Vienna Philharmonic for a short period of time.</p>
+            </div>
+
+            <div class="grid">
+
+                <div class="portfolio-card">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1590059346614-388f6c990263?auto=format&fit=crop&q=80');"></div>
+                    <div class="card-content">
+                        <h4>Miami University Symphony Orchestra</h4>
+                        <span>Associate Principal & Section Cello | 2022 - 2026</span>
+                        <p>Served as a dedicated cello section member, advancing to the position of Associate Principal at the beginning of 2025. Contributed to various symphonic performances and demonstrated leadership within the cello section.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&q=80');"></div>
+                    <div class="card-content">
+                        <h4>Miami University Cello Ensemble</h4>
+                        <span>Ensemble Member | 2022 - 2026</span>
+                        <p>Performed a diverse repertoire ranging from traditional hymns and classical works to contemporary pop arrangements within a dedicated ensemble of 8 to 12 cellists.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&q=80');"></div>
+                    <div class="card-content">
+                        <h4>Prague Summer Nights Orchestra</h4>
+                        <span>Section Cello | Summer 2025</span>
+                        <p>Performed as a cello section member, most notably playing Dvořák's Symphony No. 9 ("New World Symphony") under the baton of world-renowned conductor Marin Alsop in Plzeň, Czechia.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1620023450915-d2fc76cc8d42?auto=format&fit=crop&q=80');"></div>
+                    <div class="card-content">
+                        <h4>Event & Gig Musician</h4>
+                        <span>Freelance | 2018 - Present</span>
+                        <p>Ongoing freelance musician performing for a variety of events, including weddings, church performances, and private events.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <div class="container">
+            <h2>Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img class="gallery-img" src="https://images.unsplash.com/photo-1565022536102-f7645c84354a?auto=format&fit=crop&q=80" alt="Cello Performance 1">
+                </div>
+                <div class="gallery-item">
+                    <img class="gallery-img" src="https://images.unsplash.com/photo-1619983081563-430f63602796?auto=format&fit=crop&q=80" alt="Cello Performance 2">
+                </div>
+                <div class="gallery-item">
+                    <img class="gallery-img" src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&q=80" alt="Orchestra Performance">
+                </div>
+                <div class="gallery-item">
+                    <img class="gallery-img" src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&q=80" alt="Sheet Music">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Marcus Cheung. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
