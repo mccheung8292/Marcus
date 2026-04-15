@@ -316,6 +316,41 @@
             color: var(--text-muted);
             border-top: 1px solid var(--border-color);
         }
+
+        /* === Animations === */
+        @keyframes pageHeadFadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Page title entrance on load */
+        .portfolio-header h1 { animation: pageHeadFadeIn 0.8s ease both; }
+        .portfolio-header p  { animation: pageHeadFadeIn 0.8s ease 0.2s both; }
+
+        /* Nav link underline slide-in — exclude dropdown trigger */
+        .nav-links > a:not(.dropdown-trigger) { position: relative; }
+        .nav-links > a:not(.dropdown-trigger)::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+        .nav-links > a:not(.dropdown-trigger):hover::after { width: 100%; }
     </style>
 </head>
 <body>
@@ -328,10 +363,10 @@
                 <a href="index.html#about">About</a>
                 
                 <div class="dropdown">
-                    <a href="#" style="cursor: default; color: var(--accent-blue);">Experience ▼</a>
+                    <a href="#" class="dropdown-trigger" style="cursor: default; color: var(--accent-blue);">Experience ▼</a>
                     <div class="dropdown-content">
-                        <a href="music-experience.html">Musician Experience</a>
-                        <a href="arts-admin-experience.html" style="font-weight: bold;">Arts Administration</a>
+                        <a href="Musical-experience3.html">Musician Experience</a>
+                        <a href="Arts-Admin-Experience2.html" style="font-weight: bold;">Arts Administration</a>
                     </div>
                 </div>
 
@@ -352,7 +387,7 @@
         <div class="container">
             <div class="grid">
                 
-                <div class="portfolio-card">
+                <div class="portfolio-card fade-in" data-delay="0">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&q=80');"></div>
                     <div class="card-content">
                         <h4>Festival Prague Summer Nights</h4>
@@ -361,7 +396,7 @@
                     </div>
                 </div>
 
-                <div class="portfolio-card">
+                <div class="portfolio-card fade-in" data-delay="150">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80');"></div>
                     <div class="card-content">
                         <h4>Summermusik (Cincinnati Chamber Orchestra)</h4>
@@ -401,7 +436,7 @@
                     </div>
                 </div>
 
-                <div class="portfolio-card">
+                <div class="portfolio-card fade-in" data-delay="300">
                     <div class="card-image" style="background-image: url('Marshall%20Elementary%20Instrument%20Try%20It%20Day%20Photo%201.jpg');"></div>
                     <div class="card-content">
                         <h4>Instrument Try It Day Event</h4>
@@ -471,6 +506,19 @@
             currentImgSlideIndex = (currentImgSlideIndex + direction + imgSlides.length) % imgSlides.length;
             imgSlides[currentImgSlideIndex].classList.add('active');
         }
+
+        // Scroll Animation Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.transitionDelay = (entry.target.dataset.delay || 0) + 'ms';
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 
 </body>
