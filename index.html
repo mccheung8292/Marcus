@@ -176,6 +176,7 @@
         .hero .btn:hover {
             background-color: var(--white);
             color: var(--text-main);
+            transform: scale(1.03);
         }
 
         /* About Section */
@@ -341,6 +342,41 @@
                 min-width: 150px;
             }
         }
+        /* === Animations === */
+        @keyframes heroFadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero entrance on page load */
+        .hero h1   { animation: heroFadeIn 0.8s ease both; }
+        .hero p    { animation: heroFadeIn 0.8s ease 0.2s both; }
+        .hero .btn { animation: heroFadeIn 0.8s ease 0.4s both; }
+
+        /* Nav link underline slide-in */
+        .nav-links > a { position: relative; }
+        .nav-links > a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+        .nav-links > a:hover::after { width: 100%; }
     </style>
 </head>
 <body>
@@ -375,12 +411,12 @@
 
         <section id="about">
             <div class="about-content">
-                <div class="about-text">
+                <div class="about-text fade-in">
                     <h2>Where Artistry Meets Vision</h2>
                     <p>Marcus Cheung is a creative, performer, and innovator who strives to utilize both his creative endeavor and administration skills to impact the arts. He currently perform in a variety of ensembles such as the Miami University Symphony Orchestra and Cello Ensemble. He utilizes his administration skills through his experiences as an orchestra administrator for Festival Prague Summer Nights, Treasurer for Asian American Association and as an Artistic Administration Intern for Summermusik (Cincinnati Chamber Orchestra).</p>
                     <p>His career goals are to make a positive impact on people by managing and developing ideas and events in the creative arts industry as a performer, innovator, and administrator.</p>
                 </div>
-                <div>
+                <div class="fade-in" data-delay="100">
                     <img src="Headshot.jpg" alt="Marcus Cheung" style="height: 800px; width: 100%; object-fit: cover; object-position: top; border-radius: 4px; background-color: var(--border-color); display: block;">
                 </div>
             </div>
@@ -392,15 +428,15 @@
                 <p style="color: var(--text-muted); margin-bottom: 2rem;">Available for performances, private instruction, and arts consulting.</p>
                 
                 <div class="booking-options">
-                    <div class="booking-card">
+                    <div class="booking-card fade-in" data-delay="0">
                         <h4>Cello Lessons</h4>
                         <p style="font-size: 0.9rem;">Private instruction tailored for all ages and skill levels, focusing on technique, musicality, and performance prep.</p>
                     </div>
-                    <div class="booking-card">
+                    <div class="booking-card fade-in" data-delay="100">
                         <h4>Gigs & Events</h4>
                         <p style="font-size: 0.9rem;">Elegant live cello music for weddings, corporate events, and recording sessions.</p>
                     </div>
-                    <div class="booking-card">
+                    <div class="booking-card fade-in" data-delay="200">
                         <h4>Arts Business</h4>
                         <p style="font-size: 0.9rem;">Consulting for ensembles and festivals, specializing in digital content creation and operational strategy.</p>
                     </div>
@@ -427,7 +463,7 @@
         </section>
 
         <section id="contact">
-            <div style="padding: 4rem 0;">
+            <div class="fade-in" style="padding: 4rem 0;">
                 <h2>Get in Touch</h2>
                 <p>Let's discuss your next event, project, or collaboration.</p>
                 
@@ -444,5 +480,18 @@
         </footer>
     </div>
 
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.transitionDelay = (entry.target.dataset.delay || 0) + 'ms';
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
