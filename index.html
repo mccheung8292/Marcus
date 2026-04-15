@@ -365,8 +365,8 @@
         .hero .btn { animation: heroFadeIn 0.8s ease 0.4s both; }
 
         /* Nav link underline slide-in */
-        .nav-links > a { position: relative; }
-        .nav-links > a::after {
+        .nav-links > a:not(.dropdown-trigger) { position: relative; }
+        .nav-links > a:not(.dropdown-trigger)::after {
             content: '';
             position: absolute;
             bottom: -3px;
@@ -376,7 +376,7 @@
             background-color: currentColor;
             transition: width 0.3s ease;
         }
-        .nav-links > a:hover::after { width: 100%; }
+        .nav-links > a:not(.dropdown-trigger):hover::after { width: 100%; }
     </style>
 </head>
 <body>
@@ -389,7 +389,7 @@
                 <a href="#about">About</a>
                 
                 <div class="dropdown">
-                    <a href="#" style="cursor: default;">Experience ▼</a>
+                    <a href="#" class="dropdown-trigger" style="cursor: default;">Experience ▼</a>
                     <div class="dropdown-content">
                         <a href="Musical-experience3.html">Musician Experience</a>
                         <a href="Arts-Admin-Experience2.html">Arts Administration</a>
@@ -463,11 +463,11 @@
         </section>
 
         <section id="contact">
-            <div class="fade-in" style="padding: 4rem 0;">
-                <h2>Get in Touch</h2>
+            <div style="padding: 4rem 0;">
+                <h2 class="fade-in">Get in Touch</h2>
                 <p>Let's discuss your next event, project, or collaboration.</p>
-                
-                <div class="contact-links">
+
+                <div class="contact-links fade-in" data-delay="100">
                     <a href="mailto:marcuscycheung@gmail.com">Email Me</a>
                     <a href="https://www.linkedin.com/in/marcuscycheung" target="_blank">LinkedIn</a>
                     <a href="#" target="_blank">Instagram</a>
