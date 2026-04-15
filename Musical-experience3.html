@@ -234,6 +234,41 @@
             border-top: 1px solid var(--border-color);
             background-color: var(--bg-color);
         }
+
+        /* === Animations === */
+        @keyframes pageHeadFadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Page title entrance on load */
+        .portfolio-header h1 { animation: pageHeadFadeIn 0.8s ease both; }
+        .portfolio-header p  { animation: pageHeadFadeIn 0.8s ease 0.2s both; }
+
+        /* Nav link underline slide-in — exclude dropdown trigger */
+        .nav-links > a:not(.dropdown-trigger) { position: relative; }
+        .nav-links > a:not(.dropdown-trigger)::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+        .nav-links > a:not(.dropdown-trigger):hover::after { width: 100%; }
     </style>
 </head>
 <body>
@@ -246,10 +281,10 @@
                 <a href="index.html#about">About</a>
                 
                 <div class="dropdown">
-                    <a href="#" style="cursor: default; color: var(--accent-blue);">Experience ▼</a>
+                    <a href="#" class="dropdown-trigger" style="cursor: default; color: var(--accent-blue);">Experience ▼</a>
                     <div class="dropdown-content">
-                        <a href="music-experience.html" style="font-weight: bold;">Musician Experience</a>
-                        <a href="arts-admin-experience.html">Arts Administration</a>
+                        <a href="Musical-experience3.html" style="font-weight: bold;">Musician Experience</a>
+                        <a href="Arts-Admin-Experience2.html">Arts Administration</a>
                     </div>
                 </div>
 
@@ -269,14 +304,14 @@
     <section class="portfolio-section">
         <div class="container">
             
-            <div class="biography-section">
+            <div class="biography-section fade-in">
                 <p>Marcus is an accomplished cellist having performed in a variety of styles, ensembles, and locations. He is completing his Bachelor of Music from Miami University where he has studied under Dr. Sarah Kim and Dr. Franklin Sandoval. He has also played in several masterclasses such as for Sarah Berry, Western Kentucky University Professor, Joanna Blendulf, Jacob School of Music Professor and Baroque Cello Specialist, Rictor Noren, Boston Conservatory Professor, Karlos Rodriguez, Cellist for the Catalyst Quartet. He currently serves as the associate principal for the Miami University Symphony Orchestra and is president and co-founder of Miami University Cello Society.</p>
                 <p>Marcus also has distinguished experience internationally performing with world renown conductor Marin Alsop in Pilzen, Czechia and with Music Generation Laois featuring guest artist Steve Cooney in Laois, Ireland. Additionally, he has also had experience studying with Tamas Varga, Principal Cellist of the Vienna Philharmonic for a short period of time.</p>
             </div>
 
             <div class="grid">
 
-                <div class="portfolio-card">
+                <div class="portfolio-card fade-in" data-delay="0">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1590059346614-388f6c990263?auto=format&fit=crop&q=80');"></div>
                     <div class="card-content">
                         <h4>Miami University Symphony Orchestra</h4>
@@ -285,7 +320,7 @@
                     </div>
                 </div>
 
-                <div class="portfolio-card">
+                <div class="portfolio-card fade-in" data-delay="100">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&q=80');"></div>
                     <div class="card-content">
                         <h4>Miami University Cello Ensemble</h4>
@@ -294,7 +329,7 @@
                     </div>
                 </div>
 
-                <div class="portfolio-card">
+                <div class="portfolio-card fade-in" data-delay="200">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&q=80');"></div>
                     <div class="card-content">
                         <h4>Prague Summer Nights Orchestra</h4>
@@ -303,7 +338,7 @@
                     </div>
                 </div>
 
-                <div class="portfolio-card">
+                <div class="portfolio-card fade-in" data-delay="300">
                     <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1620023450915-d2fc76cc8d42?auto=format&fit=crop&q=80');"></div>
                     <div class="card-content">
                         <h4>Event & Gig Musician</h4>
@@ -320,16 +355,16 @@
         <div class="container">
             <h2>Gallery</h2>
             <div class="gallery-grid">
-                <div class="gallery-item">
+                <div class="gallery-item fade-in" data-delay="0">
                     <img class="gallery-img" src="https://images.unsplash.com/photo-1565022536102-f7645c84354a?auto=format&fit=crop&q=80" alt="Cello Performance 1">
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item fade-in" data-delay="100">
                     <img class="gallery-img" src="https://images.unsplash.com/photo-1619983081563-430f63602796?auto=format&fit=crop&q=80" alt="Cello Performance 2">
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item fade-in" data-delay="200">
                     <img class="gallery-img" src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&q=80" alt="Orchestra Performance">
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item fade-in" data-delay="300">
                     <img class="gallery-img" src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&q=80" alt="Sheet Music">
                 </div>
             </div>
@@ -340,5 +375,18 @@
         <p>&copy; 2026 Marcus Cheung. All Rights Reserved.</p>
     </footer>
 
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.transitionDelay = (entry.target.dataset.delay || 0) + 'ms';
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
