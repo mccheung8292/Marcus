@@ -122,13 +122,17 @@
         }
 
         .portfolio-header h1 {
-            font-size: 3.5rem; /* Restored to original size */
-            margin-bottom: 1rem;
+            font-size: 3.5rem; 
+            margin-bottom: 1.5rem;
         }
 
-        .portfolio-header p {
+        .bio-text p {
             color: var(--text-muted); 
-            font-size: 1.1rem;
+            font-size: 1.05rem;
+            max-width: 850px;
+            margin: 0 auto 1.2rem auto;
+            text-align: left;
+            line-height: 1.8;
         }
 
         /* Clean Horizontal Portfolio Styling */
@@ -147,7 +151,7 @@
             border: 1px solid var(--border-color);
             border-radius: 8px; 
             overflow: hidden;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05); /* Softer, more elegant shadow */
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05); 
             display: flex;
             flex-direction: column; 
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -170,17 +174,17 @@
         @media (min-width: 900px) {
             .portfolio-card {
                 flex-direction: row; 
-                align-items: stretch; /* Stretches image to match content height cleanly */
+                align-items: stretch; 
             }
             .card-image {
-                width: 35%; /* Fixed width column */
+                width: 35%; 
                 height: auto; 
                 min-height: 100%;
                 border-right: 1px solid var(--border-color);
             }
             .card-content {
                 width: 65%; 
-                padding: 3rem; /* Lots of clean breathing room */
+                padding: 3rem; 
             }
         }
 
@@ -239,7 +243,7 @@
 
         .carousel-slides {
             width: 100%;
-            max-width: 280px; /* Perfect medium size: clean but visible */
+            max-width: 280px; 
             overflow: hidden;
             position: relative;
             border-radius: 6px;
@@ -340,7 +344,7 @@
 
         /* Page title entrance on load */
         .portfolio-header h1 { animation: pageHeadFadeIn 0.8s ease both; }
-        .portfolio-header p  { animation: pageHeadFadeIn 0.8s ease 0.2s both; }
+        .portfolio-header .bio-text  { animation: pageHeadFadeIn 0.8s ease 0.2s both; }
 
         /* Nav link underline slide-in — exclude dropdown trigger */
         .nav-links > a:not(.dropdown-trigger) { position: relative; }
@@ -383,7 +387,10 @@
     <header class="portfolio-header">
         <div class="container">
             <h1>Arts Administration</h1>
-            <p>Cello Performance and Arts Management & Entrepreneurship major at Miami University.</p>
+            <div class="bio-text">
+                <p>Marcus is an upcoming Arts Administrator gaining a multitude of skills and experiences during his collegiate career. He has exceptional experience in orchestra logistics and operations as an Orchestra Operations Administrator for Prague Summer Nights, an international music festival in the Czech Republic and Austria. In addition, he also has developed skills in scheduling, music librarian, and personnel management during his time in the Czech Republic. Marcus has developed skills in data analysis and survey development as an intern for a pilot project called Institute for Arts Public Value under Angela Meleca. He currently works as an Arts Administration Intern for Summermusik (Cincinnati Chamber Orchestra) demonstrating skills as social media manager for all platforms. In addition, he also has experience in grant writing and research, data management, and artist liaison during his time with Summermusik.</p>
+                <p>Marcus has recently accepted a new role to work for the Arts Administration team for the Santa Fe Chamber Music Festival for the Summer of 2026 and looks forward to working with the team and to continue learning and gaining experience from this work.</p>
+            </div>
         </div>
     </header>
 
