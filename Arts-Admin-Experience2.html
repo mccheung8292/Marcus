@@ -17,6 +17,8 @@
             --border-color: #e2e8f0; 
             --divider-light: #f1f5f9;
             --white: #ffffff;
+            --accent-blue-strong: #334155;
+            --accent-soft: #e0f2fe;
         }
 
         body, html {
@@ -319,6 +321,230 @@
             font-size: 0.85rem;
             color: var(--text-muted);
             border-top: 1px solid var(--border-color);
+        }
+
+        /* === Section rhythm === */
+        .section {
+            padding: 4rem 0;
+        }
+        .section-eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: block;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin: 0 0 2.5rem 0;
+        }
+
+        /* === Chips / badges === */
+        .chip {
+            display: inline-block;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            color: var(--text-muted);
+            margin-right: 0.4rem;
+            margin-bottom: 0.4rem;
+            background-color: var(--white);
+        }
+        .chip-accent {
+            background-color: var(--accent-soft);
+            border-color: var(--accent-soft);
+            color: var(--accent-blue-strong);
+        }
+        .chip-strong {
+            background-color: var(--accent-blue-strong);
+            border-color: var(--accent-blue-strong);
+            color: var(--white);
+        }
+        .chip-row {
+            margin-bottom: 1rem;
+        }
+
+        /* === Hero refinements === */
+        .hero-tagline {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 720px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* === Currently & Upcoming callout === */
+        .current-upcoming-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        @media (min-width: 720px) {
+            .current-upcoming-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .cu-card {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .cu-card.upcoming {
+            border-left: 3px solid var(--accent-blue-strong);
+        }
+        .cu-card h4 {
+            font-size: 1.35rem;
+            margin: 0.25rem 0 0 0;
+        }
+        .cu-card .cu-org {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+        .cu-card .cu-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+        .cu-card .cu-body {
+            margin-top: 0.75rem;
+            color: #334155;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* === Impact at a Glance metrics === */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        @media (min-width: 720px) {
+            .stats-strip {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.75rem;
+            color: var(--text-main);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            line-height: 1.4;
+        }
+
+        /* === Text-forward card panel (replacement for stock photo) === */
+        .card-image.text-panel {
+            background-color: var(--bg-light-blue);
+            background-image: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            min-height: 250px;
+        }
+        .card-image.text-panel .monogram {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--white);
+            letter-spacing: 2px;
+            line-height: 1.1;
+        }
+        .card-image.text-panel .monogram small {
+            display: block;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #cbd5e1;
+            margin-top: 0.75rem;
+            font-weight: 400;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* === Skills & Capabilities grid === */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        @media (min-width: 720px) {
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1000px) {
+            .skills-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        .skill-block {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.75rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .skill-block:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -10px rgba(0,0,0,0.08);
+        }
+        .skill-block .skill-icon {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        .skill-block h4 {
+            font-size: 1.1rem;
+            margin: 0 0 0.75rem 0;
+        }
+        .skill-block ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            color: #334155;
+            font-size: 0.9rem;
+            line-height: 1.9;
+        }
+
+        /* === Profile section === */
+        .profile-body {
+            max-width: 680px;
+            margin: 0 auto;
+            color: var(--text-muted);
+            line-height: 1.85;
+            font-size: 1rem;
+        }
+        .profile-body p {
+            margin-bottom: 1.2rem;
+        }
+        .profile-body p:last-child {
+            margin-bottom: 0;
         }
 
         /* === Animations === */
