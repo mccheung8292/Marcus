@@ -175,18 +175,22 @@
         /* Desktop Layout - Magazine Style Split */
         @media (min-width: 900px) {
             .portfolio-card {
-                flex-direction: row; 
-                align-items: stretch; 
+                flex-direction: row;
+                align-items: stretch;
+                min-height: 560px;
             }
             .card-image {
-                width: 35%; 
-                height: auto; 
+                width: 35%;
+                height: auto;
                 min-height: 100%;
                 border-right: 1px solid var(--border-color);
             }
+            .card-image.text-panel {
+                min-height: 100%;
+            }
             .card-content {
-                width: 65%; 
-                padding: 3rem; 
+                width: 65%;
+                padding: 3rem;
             }
         }
 
@@ -614,7 +618,6 @@
         <div class="container">
             <span class="section-eyebrow">Portfolio</span>
             <h1>Arts Administration</h1>
-            <p class="hero-tagline">Orchestra operations, arts marketing, and program development across international festivals, chamber orchestras, and music education initiatives.</p>
         </div>
     </header>
 
