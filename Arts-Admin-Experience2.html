@@ -177,7 +177,7 @@
             .portfolio-card {
                 flex-direction: row;
                 align-items: stretch;
-                min-height: 560px;
+                height: 560px;
             }
             .card-image {
                 width: 35%;
@@ -190,7 +190,20 @@
             }
             .card-content {
                 width: 65%;
-                padding: 3rem;
+                padding: 2.25rem 3rem;
+                justify-content: flex-start;
+                overflow: hidden;
+            }
+            .card-content .social-media-work {
+                margin-top: 1rem;
+                padding-top: 1rem;
+            }
+            .card-content .carousel-slides {
+                max-width: 220px;
+            }
+            .card-content .media-item p {
+                margin-top: 0.3rem;
+                font-size: 0.75rem;
             }
         }
 
